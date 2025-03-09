@@ -28,8 +28,8 @@ https://unsplash.com/pt-br/ - Fotos sem direitos autorais.
 https://www.figma.com/
 
 ## Expirações
-1o - https://cdn-media-1.freecodecamp.org/images/1*FNvXAOU_leQ7E2Bjuc8gqw.png
-pierre.io
-https://cdn-media-1.freecodecamp.org/images/1*lHvZOpk9b6J35Y6qpDaBDQ.png
-https://cdn-media-1.freecodecamp.org/images/1*ymmhDOxPOxWxFCk6J2Dj4w.png
-https://cdn-media-1.freecodecamp.org/images/1*Aq7TXpuzXp8lTX0Dhxw_DQ.png
+- https://cdn-media-1.freecodecamp.org/images/1*FNvXAOU_leQ7E2Bjuc8gqw.png
+- pierre.io
+- https://cdn-media-1.freecodecamp.org/images/1*lHvZOpk9b6J35Y6qpDaBDQ.png
+- https://cdn-media-1.freecodecamp.org/images/1*ymmhDOxPOxWxFCk6J2Dj4w.png
+- https://cdn-media-1.freecodecamp.org/images/1*Aq7TXpuzXp8lTX0Dhxw_DQ.png
