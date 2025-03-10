@@ -2,10 +2,10 @@
 Primeiro, rode o servidor de desenvolvimento:
 
 ```bash
-- git clone https://github.com/Davidmdlp/site_david.git
+git clone https://github.com/Davidmdlp/site_david.git
 ```
 ```bash
-- npm install
+npm install
 ```
 ```bash
 npm run dev
