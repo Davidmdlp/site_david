@@ -1,13 +1,12 @@
-## Comandos usados
+## Começando
+Primeiro, rode o servidor de desenvolvimento:
 
+```bash
 - git clone [`https://github.com/Davidmdlp/site_david.git`](https://github.com/Davidmdlp/site_david)
-
+```
+```bash
 - npm install
-
-## Getting Started
-
-First, run the development server:
-
+```
 ```bash
 npm run dev
 
