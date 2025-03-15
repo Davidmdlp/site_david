@@ -30,5 +30,3 @@ https://www.figma.com/
 - https://cdn-media-1.freecodecamp.org/images/1*lHvZOpk9b6J35Y6qpDaBDQ.png
 - https://cdn-media-1.freecodecamp.org/images/1*ymmhDOxPOxWxFCk6J2Dj4w.png
 - https://cdn-media-1.freecodecamp.org/images/1*Aq7TXpuzXp8lTX0Dhxw_DQ.png
-
-teste
