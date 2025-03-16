@@ -1,6 +1,8 @@
 ## Começando
 Primeiro, rode o servidor de desenvolvimento:
 
+docker build -t site_david .
+
 ```bash
 git clone https://github.com/Davidmdlp/site_david.git
 ```
