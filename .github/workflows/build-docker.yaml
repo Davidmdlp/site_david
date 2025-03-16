@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag site_david:$(date +%s)
+    - name: push image to docker hub, current version
+      run: |
+        docker login -u davidmdlp -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        docker push davidmdlp/site_david:$(date +%s)
+    - name: push image to docker hub, latest
+      run: |
+        docker login -u davidmdlp -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        docker push davidmdlp/site_david:latest
