@@ -2,22 +2,28 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "production" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "production" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Set up version
+      run: echo "IMAGE_VERSION=${{ github.run_number }}" >> $GITHUB_ENV
+
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag site_david:$(date +%s)
-    - name: push image to docker hub, current version
       run: |
-        docker login -u davidmdlp -p ${{ secrets.DOCKER_HUB_TOKEN }}
-        docker push davidmdlp/site_david:$(date +%s)
-    - name: push image to docker hub, latest
+        docker build . --file Dockerfile --tag davidmdlp/site_david:${IMAGE_VERSION}
+        docker tag davidmdlp/site_david:${IMAGE_VERSION} davidmdlp/site_david:latest
+
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u davidmdlp --password-stdin
+
+    - name: Push image to Docker Hub
       run: |
-        docker login -u davidmdlp -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        docker push davidmdlp/site_david:${IMAGE_VERSION}
         docker push davidmdlp/site_david:latest
