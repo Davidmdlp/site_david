@@ -1,0 +1,30 @@
+name: Deploy to Server
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Docker Image"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+
+    - name: Configurar SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H SEU_SERVIDOR >> ~/.ssh/known_hosts
+
+    - name: Deploy no servidor
+      run: |
+        ssh deploy@SEU_SERVIDOR << 'EOF'
+        docker pull davidmdlp/site_david:latest
+        docker stop site_david || true
+        docker rm site_david || true
+        docker run -d --name site_david -p 80:80 davidmdlp/site_david:latest
+        EOF
