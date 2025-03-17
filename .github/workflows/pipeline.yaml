@@ -39,13 +39,13 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag davidmdlp/site_david:${IMAGE_VERSION}
-        docker tag davidmdlp/site_david:${IMAGE_VERSION} davidmdlp/site_david:latest
+        docker build . --file Dockerfile --tag davidmdlp/site_david:v${IMAGE_VERSION}
+        docker tag davidmdlp/site_david:v${IMAGE_VERSION} davidmdlp/site_david:latest
 
     - name: Login to Docker Hub
       run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u davidmdlp --password-stdin
 
     - name: Push image to Docker Hub
       run: |
-        docker push davidmdlp/site_david:${IMAGE_VERSION}
+        docker push davidmdlp/site_david:v${IMAGE_VERSION}
         docker push davidmdlp/site_david:latest
