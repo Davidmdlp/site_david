@@ -47,3 +47,5 @@ jobs:
           TAG_NAME="v${{ github.run_number }}"  # Define a tag como v<numero_do_workflow>
           git tag -f $TAG_NAME
           git push origin $TAG_NAME --force  # Atualiza a tag no repositório remoto
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB}}
