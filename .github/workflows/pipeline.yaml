@@ -27,3 +27,23 @@ jobs:
       run: |
         docker push davidmdlp/site_david:${IMAGE_VERSION}
         docker push davidmdlp/site_david:latest
+        
+  update-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necessário para atualizar tags corretamente
+
+      - name: Configurar Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions@users.noreply.github.com"
+
+      - name: Criar/Atualizar tag
+        run: |
+          TAG_NAME="v${{ github.run_number }}"  # Define a tag como v<numero_do_workflow>
+          git tag -f $TAG_NAME
+          git push origin $TAG_NAME --force  # Atualiza a tag no repositório remoto
