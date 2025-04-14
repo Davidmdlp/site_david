@@ -27,7 +27,7 @@ jobs:
           git tag -f $TAG_NAME
           git push origin $TAG_NAME --force  # Atualiza a tag no repositório remoto
 
-  build:
+  build-React-Nginx:
     runs-on: ubuntu-latest
     needs: update-tag  # ⬅️ Aguarda a execução do "update-tag"
     
@@ -37,15 +37,38 @@ jobs:
     - name: Set up version
       run: echo "IMAGE_VERSION=${{ github.run_number }}" >> $GITHUB_ENV
 
-    - name: Build the Docker image
+    - name: Build the Docker image React Nginx
       run: |
-        docker build . --file Dockerfile --tag davidmdlp/site_david:v${IMAGE_VERSION}
-        docker tag davidmdlp/site_david:v${IMAGE_VERSION} davidmdlp/site_david:latest
+        docker build . --file react_nginx.dockerfile --tag davidmdlp/site_david_nginx:v${IMAGE_VERSION}
+        docker tag davidmdlp/site_david_nginx:v${IMAGE_VERSION} davidmdlp/site_david_nginx:latest
 
     - name: Login to Docker Hub
       run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u davidmdlp --password-stdin
 
     - name: Push image to Docker Hub
       run: |
-        docker push davidmdlp/site_david:v${IMAGE_VERSION}
-        docker push davidmdlp/site_david:latest
+        docker push davidmdlp/site_david_nginx:v${IMAGE_VERSION}
+        docker push davidmdlp/site_david_nginx:latest
+
+  build-React-Node:
+    runs-on: ubuntu-latest
+    needs: update-tag  # ⬅️ Aguarda a execução do "update-tag"
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up version
+      run: echo "IMAGE_VERSION=${{ github.run_number }}" >> $GITHUB_ENV
+
+    - name: Build the Docker image React Nginx
+      run: |
+        docker build . --file react_node.dockerfile --tag davidmdlp/site_david_node:v${IMAGE_VERSION}
+        docker tag davidmdlp/site_david_node:v${IMAGE_VERSION} davidmdlp/site_david_node:latest
+
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u davidmdlp --password-stdin
+
+    - name: Push image to Docker Hub
+      run: |
+        docker push davidmdlp/site_david_node:v${IMAGE_VERSION}
+        docker push davidmdlp/site_david_node:latest
