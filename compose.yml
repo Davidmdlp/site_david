@@ -1,7 +1,11 @@
 services:
-  site_david:
+  site_david_nginx:
     container_name: site_david
-    image: davidmdlp/site_david:latest
+    image: davidmdlp/site_david_nginx:latest
     ports:
       - "80:80"
+  site_david_node:
+    container_name: site_david
+    image: davidmdlp/site_david_node:latest
+    ports:
       - "3000:3000"
